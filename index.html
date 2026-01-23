@@ -1,168 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Zothankima | Data Science Portfolio</title>
+<meta charset="UTF-8">
+<title>Zothankima | Data Science Portfolio</title>
 
-    <style>
-        /* Page background */
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #e3f2fd, #f9f9f9);
-            margin: 0;
-            padding: 40px 20px;
-        }
+<style>
+/* ================= ROOT THEMES ================= */
+:root {
+    --bg-gradient-dark: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #020617);
+    --bg-gradient-light: linear-gradient(-45deg, #e3f2fd, #f5f7fa, #ffffff, #e3f2fd);
 
-        /* Main container */
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            position: relative;
-        }
+    --card-dark: rgba(255,255,255,0.08);
+    --card-light: rgba(255,255,255,0.85);
 
-        h1 {
-            margin-top: 0;
-            color: #222;
-        }
+    --text-dark: #e5e7eb;
+    --text-light: #1f2937;
 
-        h2 {
-            color: #333;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 5px;
-        }
+    --accent: #38bdf8;
+}
 
-        p {
-            color: #444;
-        }
+/* ================= BASE ================= */
+* {
+    box-sizing: border-box;
+}
 
-        ul {
-            margin-left: 20px;
-        }
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    min-height: 100vh;
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    transition: background 0.4s ease, color 0.4s ease;
+}
 
-        /* Profile picture */
-        .profile-pic {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #ffffff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
+/* Animated gradient */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-        /* Section cards */
-        .section {
-            background: #fafafa;
-            padding: 20px;
-            margin-top: 25px;
-            border-radius: 10px;
-        }
+/* ================= THEMES ================= */
+body.dark {
+    background-image: var(--bg-gradient-dark);
+    color: var(--text-dark);
+}
 
-        a {
-            color: #1565c0;
-            text-decoration: none;
-        }
+body.light {
+    background-image: var(--bg-gradient-light);
+    color: var(--text-light);
+}
 
-        a:hover {
-            text-decoration: underline;
-        }
+/* ================= TOGGLE BUTTON ================= */
+.toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    transition: background 0.3s ease;
+    z-index: 1000;
+}
 
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
+.toggle:hover {
+    background: rgba(0,0,0,0.6);
+}
+
+/* ================= HERO ================= */
+.hero {
+    text-align: center;
+    padding: 90px 20px 120px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    opacity: 0.85;
+    font-size: 1.1rem;
+}
+
+/* Profile image */
+.profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--accent);
+    margin-top: 30px;
+    box-shadow: 0 0 40px rgba(56,189,248,0.6);
+}
+
+/* ================= CONTENT ================= */
+.container {
+    max-width: 1100px;
+    margin: -80px auto 60px;
+    padding: 0 20px;
+    display: grid;
+    gap: 30px;
+}
+
+.card {
+    padding: 30px;
+    border-radius: 18px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark .card {
+    background: var(--card-dark);
+}
+
+body.light .card {
+    background: var(--card-light);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+}
+
+.card h2 {
+    margin-top: 0;
+    color: var(--accent);
+    border-left: 4px solid var(--accent);
+    padding-left: 12px;
+}
+
+.card p, .card li {
+    opacity: 0.85;
+    line-height: 1.7;
+}
+
+/* Skills grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.skill {
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+    background: rgba(56,189,248,0.15);
+    transition: transform 0.3s ease;
+}
+
+.skill:hover {
+    transform: scale(1.05);
+}
+
+/* Links */
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+}
+</style>
 </head>
 
-<body>
+<body class="dark">
 
+<!-- DARK/LIGHT TOGGLE -->
+<button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Zothankima</h1>
+    <p>Data Science Student · AI & Analytics Enthusiast</p>
+    <p>Aizawl, Mizoram, India</p>
+    <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+</section>
+
+<!-- CONTENT -->
 <div class="container">
 
-    <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
-
-    <h1>Zothankima</h1>
-    <p><strong>Data Science Student</strong></p>
-    <p>Aizawl, Mizoram, India</p>
-
-    <div class="section">
+    <div class="card">
         <h2>About Me</h2>
         <p>
-            I am a Data Science student with a strong interest in data analysis,
-            visualization, and problem-solving using data. I am building a solid
-            foundation in Python, statistics, and exploratory data analysis through
-            continuous learning and hands-on practice.
+            I am a Data Science student focused on analytics, visualization,
+            and AI-powered insights. I am developing strong hands-on skills
+            in Python, statistics, and exploratory data analysis to solve
+            real-world problems.
         </p>
     </div>
 
-    <div class="section">
+    <div class="card">
         <h2>Skills & Tools</h2>
+        <div class="skills-grid">
+            <div class="skill">Python</div>
+            <div class="skill">SQL</div>
+            <div class="skill">Pandas</div>
+            <div class="skill">NumPy</div>
+            <div class="skill">EDA</div>
+            <div class="skill">Matplotlib</div>
+            <div class="skill">Seaborn</div>
+            <div class="skill">Power BI</div>
+            <div class="skill">Tableau</div>
+            <div class="skill">AI Prompting</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Education</h2>
         <ul>
-            <li><strong>Programming:</strong> Python, SQL</li>
-            <li><strong>Data Analysis:</strong> Pandas, NumPy, EDA</li>
-            <li><strong>Visualization:</strong> Matplotlib, Seaborn, Power BI, Tableau</li>
-            <li><strong>AI Tools:</strong> Prompt Engineering, AI-assisted Analysis</li>
+            <li>10th – Distinction (MBSE)</li>
+            <li>12th (PCM) – First Division (MBSE)</li>
+            <li>B.A. Political Science – First Division (MZU)</li>
+            <li>Diploma in Computer Applications – MSCTE</li>
         </ul>
     </div>
 
-    <div class="section">
-        <h2>Educational Qualifications</h2>
+    <div class="card">
+        <h2>Certifications</h2>
         <ul>
-            <li><strong>10th Level:</strong> Distinction – MBSE</li>
-            <li><strong>12th Level (PCM):</strong> First Division – MBSE</li>
-            <li><strong>Bachelor’s Degree:</strong> Political Science – MZU</li>
-            <li><strong>Diploma:</strong> Computer Applications – MSCTE</li>
+            <li>Diploma in Computer Applications</li>
+            <li>OM Excel Using AI</li>
+            <li>
+                <strong>Data Science with AI – Placement Course (Currently Pursuing)</strong><br>
+                Internshala Trainings · NSDC Approved
+            </li>
         </ul>
     </div>
 
-    <div class="section">
-       <h2>Certificates</h2>
-<ul>
-    <li>
-        <strong>Diploma in Computer Applications</strong><br>
-        MSCTE – Jojo Computer Institute, Aizawl
-    </li>
-
-    <li>
-        <strong>OM Excel Using AI</strong><br>
-        Excel with AI-based tools and techniques
-    </li>
-
-    <li>
-        <strong>Data Science with AI – Placement Course (Currently Pursuing)</strong><br>
-        Internshala Trainings · NSDC Approved
-    </li>
-</ul>
-
-    </div>
-
-    <div class="section">
+    <div class="card">
         <h2>Projects</h2>
         <p>
-            Projects will be added soon as I continue learning and building
-            hands-on data science solutions.
+            Advanced data science and AI projects will be added here as I
+            complete hands-on implementations with real datasets.
         </p>
     </div>
 
-    <div class="section">
+    <div class="card">
         <h2>Contact</h2>
         <p>📧 <a href="mailto:hmatzothankima@gmail.com">hmatzothankima@gmail.com</a></p>
         <p>💻 <a href="https://github.com/zothankima" target="_blank">GitHub</a></p>
         <p>🔗 <a href="https://www.linkedin.com/in/zothankima-56b3b82a9" target="_blank">LinkedIn</a></p>
     </div>
 
-    <footer>
-        © 2026 Zothankima
-    </footer>
-
 </div>
+
+<footer>
+    © 2026 Zothankima · Built with GitHub Pages
+</footer>
+
+<!-- THEME SCRIPT -->
+<script>
+function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle("light");
+    body.classList.toggle("dark");
+
+    localStorage.setItem("theme", body.classList.contains("light") ? "light" : "dark");
+}
+
+(function () {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+        document.body.className = savedTheme;
+    }
+})();
+</script>
 
 </body>
 </html>
